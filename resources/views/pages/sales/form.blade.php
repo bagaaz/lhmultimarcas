@@ -64,6 +64,14 @@
             @endif
         </div>
 
+        @if(isset($saleItems[0]))
+            @if($sale->payment_method_id == 2)
+            <div>
+                <a href="{{ route('sales.installments.index', ['sale_id' => $sale->id]) }}" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                    Ver parcelas
+                </a>
+            </div>
+            @endif
         <table class="min-w-full col-start-2">
             <tr>
                 <td class="border px-4 py-2">Subtotal</td>
@@ -84,6 +92,7 @@
                 <td id="table_sale_total" class="border px-4 py-2 font-bold text-right text-green-400"></td>
             </tr>
         </table>
+       @endif
         @endisset
 
         {{--    BOTÕES DE AÇÃO    --}}

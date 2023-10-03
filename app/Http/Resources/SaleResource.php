@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Product\Product;
 use App\Models\Sales\Sale;
+use App\Models\Sales\SaleIntallment;
 use App\Models\Sales\SaleItem;
 
 class SaleResource
@@ -12,9 +13,9 @@ class SaleResource
     {
         $query = Sale::with(['client', 'paymentMethod'])
             ->select('sales.*')
-            ->selectRaw('(SELECT COUNT(*) FROM sales_items WHERE sales_items.sale_id = sales.id AND sales_items.deleted_at IS NULL) as products_count')
-            ->selectRaw('(SELECT SUM(quantity) FROM sales_items WHERE sales_items.sale_id = sales.id AND sales_items.deleted_at IS NULL) as products_total_count')
-            ->selectRaw('(SELECT SUM(quantity * unity_price) FROM sales_items WHERE sales_items.sale_id = sales.id AND sales_items.deleted_at IS NULL) as order_total_value')
+            ->selectRaw('(SELECT COUNT(*) FROM sales_items WHERE sales_items.sale_id = sales.id) as products_count')
+            ->selectRaw('(SELECT SUM(quantity) FROM sales_items WHERE sales_items.sale_id = sales.id) as products_total_count')
+            ->selectRaw('(SELECT SUM(quantity * unity_price) FROM sales_items WHERE sales_items.sale_id = sales.id) as order_total_value')
             ->orderBy('created_at', 'desc');
 
         if ($search) {

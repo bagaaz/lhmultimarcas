@@ -61,6 +61,7 @@ class SaleController extends Controller
             'client_id' => 'required',
             'payment_method_id' => 'required',
         ]);
+
         $data = $request->only(['client_id', 'payment_method_id', 'discount']);
         $data['discount'] = Helper::clearMaskMoney($data['discount']);
         $sale = $this->saleResource->updateSale($id, $data);

@@ -77,7 +77,6 @@ return new class extends Migration
             $table->bigInteger('payment_method_id')->unsigned();
             $table->decimal('discount', 10, 2)->default(0.00);
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('sales_items', function (Blueprint $table) {
@@ -87,7 +86,15 @@ return new class extends Migration
             $table->integer('quantity')->default(0);
             $table->decimal('unity_price', 10, 2)->default(0.00);
             $table->timestamps();
-            $table->softDeletes();
+        });
+
+        Schema::create('sales_installments', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('sale_id')->unsigned();
+            $table->decimal('value', 10, 2);
+            $table->date('due_date');
+            $table->boolean('paid')->default(false);
+            $table->timestamps();
         });
 
         Schema::create('suppliers', function (Blueprint $table) {
@@ -106,7 +113,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('supplier_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('suppliers_orders_items', function (Blueprint $table) {
@@ -116,7 +122,6 @@ return new class extends Migration
             $table->integer('quantity')->default(0);
             $table->decimal('unity_price', 10, 2)->default(0.00);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -134,6 +139,7 @@ return new class extends Migration
         Schema::dropIfExists('payment_methods');
         Schema::dropIfExists('sales');
         Schema::dropIfExists('sales_items');
+        Schema::dropIfExists('sales_installments');
         Schema::dropIfExists('suppliers');
         Schema::dropIfExists('suppliers_orders');
         Schema::dropIfExists('suppliers_orders_items');

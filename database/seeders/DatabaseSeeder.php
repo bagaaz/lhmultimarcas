@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
          \App\Models\User::factory()->create([
              'name' => 'Gabriel Oliveira',
              'email' => 'admin@admin.com',
-             'password' => bcrypt('123456')
+             'password' => bcrypt('Ga96911431@')
          ]);
 
         \App\Models\Product\Size::factory()->createMany([
@@ -94,6 +93,24 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Vermelho'],
             ['name' => 'Vermelho Escuro'],
             ['name' => 'Vinho']
+        ]);
+
+        \App\Models\Sales\PaymentMethod::factory()->createMany([
+            ['name' => 'À Vista', 'tax' => 0.00],
+            ['name' => 'Fiado', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 1x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 2x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 3x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 4x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 5x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 6x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 7x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 8x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 9x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 10x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 11x', 'tax' => 0.00],
+            ['name' => 'Cartão de Crédito 12x', 'tax' => 0.00],
+            ['name' => 'Cartão de Débito', 'tax' => 0.00]
         ]);
     }
 }

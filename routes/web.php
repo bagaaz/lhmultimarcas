@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/getProductsOptions', [\App\Http\Controllers\Sales\SaleController::class, 'getProductsOptions'])->name('sales.getProductsOptions');
         Route::post('/{sale_id}/items', [\App\Http\Controllers\Sales\SaleItemController::class, 'create'])->name('sales.items.create');
         Route::delete('/{sale_id}/items/{sale_item_id}', [\App\Http\Controllers\Sales\SaleItemController::class, 'destroy'])->name('sales.items.destroy');
+        Route::resource('/{sale_id}/installments', \App\Http\Controllers\Sales\SaleInstallmentController::class)->names('sales.installments');
     });
 });
 
